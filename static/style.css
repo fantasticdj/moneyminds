@@ -1,12 +1,14 @@
-body {
-    background-color: #cddbf4;
+html {
     scroll-behavior: smooth;
 }
+body {
+    background-color: #ebd3f1;
+}
 #navbar {
-    width: 1440px;
-    height: 50px;
+    width: 1425px;
+    height: 45px;
     border-radius: 3px;
-    background-color: white;
+    background-color: whitesmoke;
     position: aboslute;
 }
 #home {
@@ -16,7 +18,7 @@ body {
 }
 #homebtn {
     width: 120px;
-    height: 51px;
+    height: 45px;
     margin-top: 7px;
     padding-left: 5px;
     background-color: #e8b7d2;
@@ -41,7 +43,7 @@ body {
 }
 #aboutbtn {
     width: 80px;
-    height: 51px;
+    height: 45px;
     margin-right: 8px;
     background-color: #ddc6e0;
     border-radius: 4px;
@@ -64,7 +66,7 @@ body {
 }
 #calculatorbtn {
     width: 110px;
-    height: 51px;
+    height: 45px;
     padding-left: 5px;
     background-color: #d9dbff;
     border-radius: 4px;
@@ -87,7 +89,7 @@ body {
 }
 #dictionarybtn {
     width: 110px;
-    height: 51px;
+    height: 45px;
     padding-left: 5px;
     background-color: #d5d1eb;
     border-radius: 4px;
@@ -110,7 +112,7 @@ body {
 }
 #mediabtn {
     width: 72px;
-    height: 51px;
+    height: 45px;
     padding-left: 5px;
     background-color: #e8e4f5;
     border-radius: 4px;
@@ -133,7 +135,7 @@ body {
 }
 #registerbtn {
     width: 83px;
-    height: 51px;
+    height: 45px;
     padding-left: 5px;
     background-color: #ebd3f1;
     border-radius: 4px;
@@ -220,4 +222,60 @@ p {
 h2 {
     font-weight: bold;
     font-size: 40px;
+}
+#desc {
+    width: 1400px;
+    height: 120px;
+    background-color: whitesmoke;
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-top: 10.5px;
+    border-color: #b3e9d2;
+}
+h3 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+#finance {
+    width: 600px;
+    height: 700px;
+    background-color: whitesmoke;
+    border-style: double;
+    border-color: #e8b7d2;
+    border-width: 5px;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position: absolute;
+} 
+h4 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    padding-top: 8px;
+    padding-left: 5px;
+}
+#section1 {
+    height: 1000px;
+    width: 700px;
+    background-color: antiquewhite;
+    position: relative;
+}
+#savings {
+    background-color: whitesmoke;
+    width: 600px;
+    height: 700px;
+    margin-left: 750px;
+    margin-top: 20px;
+    border-style: double;
+    border-color: #cddbf4;
+    border-width: 5px;
+    border-radius: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position: absolute;
 }
