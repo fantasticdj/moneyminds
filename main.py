@@ -14,7 +14,7 @@ def home():
 
 @app.route("/register")
 def register():
-    return render_template("register.html")
+    return 
 
 @app.route("/info")
 def infopage():
@@ -26,6 +26,7 @@ def form():
         Starter_Deposit = request.form["Deposit"]
         Monthly_Saving = request.form["Monthly Saving"]
         Period_Time = request.form["Period of Time"]
+        Goal_Amount = request.form["Goal Amount"]
 
         if Starter_Deposit == "" or Starter_Deposit == "0":
             flash("Please fill the form")
@@ -36,13 +37,17 @@ def form():
         elif Period_Time == "" or Period_Time == "0":
             flash("Please fill the form")
             return redirect(url_for("form"))
+        elif Goal_Amount == "" or Goal_Amount == "0":
+            flash("Please fill the form")
+            return redirect(url_for("form"))
         else:
             session["Deposit"] = Starter_Deposit
             session["Monthly Saving"] = Monthly_Saving
             session["Period of Time"] = Period_Time
+            session["Goal Amount"] = Goal_Amount
             return redirect(url_for("option"))
 
-    if "Deposit" or "Monthly Saving" or "Period of Time" in session:
+    if "Deposit" and "Monthly Saving" and "Period of Time" and "Goal Amount" in session:
         session.pop("Deposit", None)
         session.pop("Monthly Saving", None)
         session.pop("Period of Time", None)
