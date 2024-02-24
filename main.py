@@ -1,5 +1,5 @@
 from cmath import log
-from crypt import methods
+from crypt import methods 
 from flask import Flask, render_template, url_for, session, request, redirect, flash
 from datetime import timedelta
 
@@ -19,7 +19,7 @@ def register():
         name = request.form["nm"]
         email = request.form["email"]
         session.permanent = True
-        
+
         if name == "":
             flash("Please fill in the form.")
         elif email == "":
