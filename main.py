@@ -54,9 +54,21 @@ def form():
 
     return render_template("form.html")
 
-@app.route("/option")
+@app.route("/option", methods=["POST", "GET"])
 def option():
+    if request.method == "POST":
+        Interest_Rate = request.form["Interest_rate"]
+        Yes = request.form["YES"]
 
+        if Interest_Rate != "" or Interest_Rate != "0":
+            if Yes == "" or Yes == "0":
+                session["Interest Rate"] = Interest_Rate
+                return redirect(url_for("result"))
+        elif Yes == "YES":
+            if  Interest_Rate == "" or Interest_Rate == "0":
+                session["YES"] = Yes
+                
+        flash("Please fill in the form correctly.")
     return render_template("option.html")
 
 @app.route("/dictionary")
@@ -71,6 +83,9 @@ def about():
 def media():
     return render_template("media.html")
 
+@app.route("/result")
+def result():
+    return render_template("result.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
