@@ -14,7 +14,7 @@ def home():
 
 @app.route("/register")
 def register():
-    return 
+    return render_template("register.html")
 
 @app.route("/info")
 def infopage():
@@ -62,6 +62,14 @@ def option():
 @app.route("/dictionary")
 def dictionary():
     return render_template("dictionary.html")
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/media")
+def media():
+    return render_template("media.html")
 
 
 if __name__ == "__main__":
