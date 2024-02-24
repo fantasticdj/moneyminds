@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, session, request, redirect
+from flask import Flask, render_template, url_for, session, request, redirect, flash
 from datetime import timedelta
 
 app = Flask(__name__)
@@ -28,27 +28,31 @@ def form():
         Period_Time = request.form["Period of Time"]
 
         if Starter_Deposit == "" or Starter_Deposit == "0":
+            flash("Please fill the form")
             return redirect(url_for("form"))
         elif Monthly_Saving == "" or Monthly_Saving == "0":
+            flash("Please fill the form")
             return redirect(url_for("form"))
         elif Period_Time == "" or Period_Time == "0":
+            flash("Please fill the form")
             return redirect(url_for("form"))
         else:
             session["Deposit"] = Starter_Deposit
             session["Monthly Saving"] = Monthly_Saving
             session["Period of Time"] = Period_Time
             return redirect(url_for("option"))
-    
+
+    if "Deposit" or "Monthly Saving" or "Period of Time" in session:
+        session.pop("Deposit", None)
+        session.pop("Monthly Saving", None)
+        session.pop("Period of Time", None)
+
     return render_template("form.html")
+
 @app.route("/option")
 def option():
 
     return render_template("option.html")
-
-
-    
-   
-
 
 
 if __name__ == "__main__":
