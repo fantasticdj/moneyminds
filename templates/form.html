@@ -6,8 +6,10 @@
 {% block head%}{% endblock%}
 
 {% block body%}
-
-<form action = "#" method= "POST">
+<div id="savings">
+<h2>Savings Calculator</h2>
+</div>
+<form action = "#" method= "POST" id="form">
     <p>Starter Deposit:</p>
     <p><input type="number" name = "Deposit"></p>
     <p>Monthly Saving:</p>
@@ -20,12 +22,12 @@
     {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for msg in messages %}
-            <p>{{msg}}</p>
+            <p id="msg">{{msg}}</p>
         {% endfor%}
     {% endif%}
 {% endwith%}
-
-    <p><input type="submit" value = "submit"></p>
+    
+    <p><input type="submit" value = "Submit" id="submitbtn"></p>
 </form>
 {% endblock%}
 
