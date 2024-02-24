@@ -242,7 +242,7 @@ h3 {
 }
 #finance {
     width: 600px;
-    height: 700px;
+    height: 900px;
     background-color: whitesmoke;
     border-style: double;
     border-color: #e8b7d2;
@@ -261,15 +261,15 @@ h4 {
     padding-left: 5px;
 }
 #section1 {
-    height: 1000px;
+    height: 1200px;
     width: 700px;
     background-color: antiquewhite;
     position: relative;
 }
-#savings {
+#saving {
     background-color: whitesmoke;
     width: 600px;
-    height: 700px;
+    height: 900px;
     margin-left: 750px;
     margin-top: 20px;
     border-style: double;
@@ -278,4 +278,15 @@ h4 {
     border-radius: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     position: absolute;
+}
+#savingsicon {
+    width: 230px;
+    height: 170px;
+    margin-left: 150px;
+}
+#stocksicon {
+    width: 200px;
+    height: 170px;
+    border-radius: 20px;
+    margin-left: 150px;
 }
