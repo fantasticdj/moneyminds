@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, session
+from flask import Flask, render_template, url_for, session, request, redirect
 from datetime import timedelta
 
 app = Flask(__name__)
@@ -11,14 +11,43 @@ app.permanent_session_lifetime = timedelta(minutes= 1)
 def home():
     return render_template("index.html")
 
+
 @app.route("/register")
 def register():
+    return render_template("register.html")
+
+@app.route("/info")
+def infopage():
     return
 
-
-@app.route("/form")
+@app.route("/form", methods=["POST", "GET"])
 def form():
+    if request.method == "POST":
+        Starter_Deposit = request.form["Deposit"]
+        Monthly_Saving = request.form["Monthly Saving"]
+        Period_Time = request.form["Period of Time"]
+
+        if Starter_Deposit == "" or Starter_Deposit == "0":
+            return redirect(url_for("form"))
+        elif Monthly_Saving == "" or Monthly_Saving == "0":
+            return redirect(url_for("form"))
+        elif Period_Time == "" or Period_Time == "0":
+            return redirect(url_for("form"))
+        else:
+            session["Deposit"] = Starter_Deposit
+            session["Monthly Saving"] = Monthly_Saving
+            session["Period of Time"] = Period_Time
+            return redirect(url_for("option"))
+    
     return render_template("form.html")
+@app.route("/option")
+def option():
+
+    return render_template("option.html")
+
+
+    
+   
 
 
 
