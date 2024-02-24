@@ -1,10 +1,38 @@
-text {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
+
 body {
     background-color: lightcoral;
 }
+#home {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    font-size: 20px;
+}
+#aboutbtn {
+    background-color: bisque;
+    width: 30px;
+    height: 10px;
+}
 #about {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    font-size: 20px;
+}
+#confess {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    font-size: 20px;
+}
+#analyse {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    font-size: 20px;
+}
+#help {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    font-size: 20px;
+}
+#register {
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: black;
     font-size: 20px;
