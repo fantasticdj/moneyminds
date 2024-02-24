@@ -6,5 +6,12 @@
 {% block head%}{% endblock%}
 
 {% block body%}
-<h1>{{result}}</h1>
+{% if IfGoal == True: %}
+    <p>You earn ${{UsableCash + NeededCash}} in total.</p>
+    <p>You can use approximately ${{UsablePerMonth}} per month.</p>
+{% elif IfGoal == False: %}
+    <p>You earn ${{result}} in {{Period_Time}} months</p>
+{% endif%}
+
+
 {% endblock%}
