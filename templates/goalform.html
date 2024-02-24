@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 {% extends 'base.html'%}
 
-{% block title %}Saving Calculator{% endblock %}
+{% block title %}Goal Calculator{% endblock %}
 
 {% block head%}{% endblock%}
 
 {% block body%}
 <div id="savings">
-<h2>Saving Calculator</h2>
+<h2>Goal Calculator</h2>
 </div>
 <form action = "#" method= "POST" id="form">
     <p>Starter Deposit:</p>
     <p><input type="number" name = "Deposit"></p>
-    <p>Monthly Saving:</p>
-    <p><input type="number" name = "Monthly Saving"></p>
+    <p>Monthly Allowance:</p>
+    <p><input type="number" name = "Monthly Allowance"></p>
     <p>Over a period of (months):</p>
     <p><input type="number" name = "Period of Time"></p>
+    <p>Goal Money:</p>
+    <p><input type="number" name = "Goal Money"></p>
 
     {% with messages = get_flashed_messages() %}
     {% if messages %}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends 'base.html'%}
+
+{% block title %}Result{% endblock %}
+
+{% block head%}{% endblock%}
+
+{% block body%}
+{% if IfGoal == True: %}
+    <p>You earn ${{UsableCash + NeededCash}} in total.</p>
+    <p>Every month you need to save at least </p>
+    <p>You can spend up to ${{UsablePerMonth}} per month.</p>
+{% elif IfGoal == False: %}
+    <p>You earn ${{result}} in {{Period_Time}} months</p>
+{% endif%}
+
+
+{% endblock%}

@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 {% extends 'base.html'%}
 
-{% block title %}Registeration{% endblock %}
+{% block title %}Index{% endblock %}
 
 {% block head%}
 {% endblock%}
 
-{% block body%}{% endblock%}
+{% block body%}
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+          {% for msg in messages %}
+              <p>{{msg}}</p>
+          {% endfor%}
+        {% endif%}
+    {% endwith%}
+{% endblock%}
 
 {% block html%}
+
 <div class="container1" id="container1">
   <h1>MoneyMinds</h1>
   <p>MoneyMinds: A teen-friendly finance website where teenagers around the world can get a taste of finance easily and efficiently.</p>

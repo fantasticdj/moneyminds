@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 {% extends 'base.html'%}
 
-{% block title %}Registeration{% endblock %}
+{% block title %}Option{% endblock %}
 
 {% block head%}{% endblock%}
 
-{% block body%}{% endblock%}
+{% block body%}
+<div id="savings">
+    <h2>Savings Calculator</h2>
+    </div>
+    <form action = "#" method= "POST" id="form">
+        <p>Put in bank?</p>
+        <p>Please write the annual interest rate (in %). If not sure just skip this.</p>
+        <p><input type="float" name = "Interest_rate"></p>
+        <p>Just Keep?</p>
+        <p>Please write "YES". Do not write anything on the interest rate.</p>
+        <p><input type="string" name = "YES"></p>
+        
+    
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p id="msg">{{msg}}</p>
+            {% endfor%}
+        {% endif%}
+    {% endwith%}
+        
+        <p><input type="submit" value = "Submit" id="submitbtn"></p>
+    </form>
+{% endblock%}
 
