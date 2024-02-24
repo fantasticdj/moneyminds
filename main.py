@@ -1,5 +1,3 @@
-from cmath import log
-from crypt import methods 
 from flask import Flask, render_template, url_for, session, request, redirect, flash
 from datetime import timedelta
 
