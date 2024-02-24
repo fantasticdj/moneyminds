@@ -26,25 +26,19 @@ def form():
         Starter_Deposit = request.form["Deposit"]
         Monthly_Saving = request.form["Monthly Saving"]
         Period_Time = request.form["Period of Time"]
-        Goal_Amount = request.form["Goal Amount"]
 
-        if Starter_Deposit == "" or Starter_Deposit == "0":
-            flash("Please fill in the form")
-            return redirect(url_for("form"))
-        elif Monthly_Saving == "" or Monthly_Saving == "0":
+
+        if Monthly_Saving == "" or Monthly_Saving == "0":
             flash("Please fill in the form")
             return redirect(url_for("form"))
         elif Period_Time == "" or Period_Time == "0":
-            flash("Please fill in the form")
-            return redirect(url_for("form"))
-        elif Goal_Amount == "" or Goal_Amount == "0":
             flash("Please fill in the form")
             return redirect(url_for("form"))
         else:
             session["Deposit"] = Starter_Deposit
             session["Monthly Saving"] = Monthly_Saving
             session["Period of Time"] = Period_Time
-            session["Goal Amount"] = Goal_Amount
+            
             return redirect(url_for("option"))
 
     if "Deposit" and "Monthly Saving" and "Period of Time" and "Goal Amount" in session:
@@ -59,15 +53,17 @@ def option():
     if request.method == "POST":
         Interest_Rate = request.form["Interest_rate"]
         Yes = request.form["YES"]
-
         if Interest_Rate != "" or Interest_Rate != "0":
-            if Yes == "" or Yes == "0":
+            if Yes == "":
+                session["YES"] = Yes
                 session["Interest Rate"] = Interest_Rate
                 return redirect(url_for("result"))
-        elif Yes == "YES":
-            if  Interest_Rate == "" or Interest_Rate == "0":
-                session["YES"] = Yes
-                
+
+        if Yes.lower() == "yes":  
+            session["YES"] = Yes 
+            session["Interest Rate"] = Interest_Rate
+            return redirect(url_for("result"))
+     
         flash("Please fill in the form correctly.")
     return render_template("option.html")
 
@@ -85,10 +81,25 @@ def media():
 
 @app.route("/result")
 def result():
-    return render_template("result.html")
+    
+    Yes = session["YES"]
+    Starter_Deposit = int(session["Deposit"])
+    Monthly_Saving = int(session["Monthly Saving"])
+    Period_Time = int(session["Period of Time"])
+
+    if Yes.lower() == "yes":  
+        session["YES"] = Yes 
+        result = Starter_Deposit + Monthly_Saving*Period_Time
+        return render_template("result.html", result=result)
+    else:
+        Interest_Rate = int(session["Interest Rate"])
+        if Yes == "":
+            year = Period_Time/12
+            real_interest_rate = pow(Interest_Rate*0.01+1, year)
+            result = (real_interest_rate)*(Starter_Deposit + Monthly_Saving*Period_Time)
+            return render_template("result.html", result=result)
+
+    return redirect(url_for("option"))
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
