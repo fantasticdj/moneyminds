@@ -59,6 +59,10 @@ def option():
 
     return render_template("option.html")
 
+@app.route("/dictionary")
+def dictionary():
+    return render_template("dictionary.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
