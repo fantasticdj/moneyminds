@@ -5,5 +5,27 @@
 
 {% block head%}{% endblock%}
 
-{% block body%}{% endblock%}
+{% block body%}
+<form action = "#" method= "POST">
+    <p>Put your body in bank?:</p>
+    <p>(Write interest rate, if not sure skip this.)</p>
+    <p><input type="number" name = "Deposit"></p>
+    <p>Monthly Saving:</p>
+    <p><input type="number" name = "Monthly Saving"></p>
+    <p>Over a period of (months):</p>
+    <p><input type="number" name = "Period of Time"></p>
+    <p>Goal Amount:</p>
+    <p><input type="number" name = "Goal Amount"></p>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p>{{msg}}</p>
+        {% endfor%}
+    {% endif%}
+{% endwith%}
+
+    <p><input type="submit" value = "submit"></p>
+</form>
+{% endblock%}
 

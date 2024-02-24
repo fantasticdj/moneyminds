@@ -29,16 +29,16 @@ def form():
         Goal_Amount = request.form["Goal Amount"]
 
         if Starter_Deposit == "" or Starter_Deposit == "0":
-            flash("Please fill the form")
+            flash("Please fill in the form")
             return redirect(url_for("form"))
         elif Monthly_Saving == "" or Monthly_Saving == "0":
-            flash("Please fill the form")
+            flash("Please fill in the form")
             return redirect(url_for("form"))
         elif Period_Time == "" or Period_Time == "0":
-            flash("Please fill the form")
+            flash("Please fill in the form")
             return redirect(url_for("form"))
         elif Goal_Amount == "" or Goal_Amount == "0":
-            flash("Please fill the form")
+            flash("Please fill in the form")
             return redirect(url_for("form"))
         else:
             session["Deposit"] = Starter_Deposit
