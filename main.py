@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, session, request, redirect, flash
 from datetime import timedelta
 
+
 app = Flask(__name__)
 app.secret_key = "404 error"
 app.permanent_session_lifetime = timedelta(minutes= 1)
@@ -89,8 +90,10 @@ def form():
         Monthly_Saving = request.form["Monthly Saving"]
         Period_Time = request.form["Period of Time"]
 
-
-        if Monthly_Saving == "" or Monthly_Saving == "0":
+        if Starter_Deposit == "":
+            flash("Please fill in the form")
+            return redirect(url_for("form"))
+        elif Monthly_Saving == "":
             flash("Please fill in the form")
             return redirect(url_for("form"))
         elif Period_Time == "" or Period_Time == "0":
@@ -156,11 +159,15 @@ def result():
             result = Starter_Deposit + Monthly_Saving*Period_Time
             return render_template("result.html", result=result,IfGoal=IfGoal, Period_Time=Period_Time)
         else:
-            Interest_Rate = int(session["Interest Rate"])
+            Interest_Rate = int(session["Interest Rate"]) * 0.01
             if Yes == "":
-                year = Period_Time/12
-                real_interest_rate = pow(Interest_Rate*0.01+1, year)
-                result = (real_interest_rate)*(Starter_Deposit + Monthly_Saving*Period_Time)
+                real_interest_rate = pow(1 + Interest_Rate/12, Period_Time)
+                StarterMoney = real_interest_rate * Starter_Deposit
+                MonthlyMoney = 0
+                for _ in range(0, Period_Time):
+                    monthly_interest_rate = pow(1 + Interest_Rate/12, Period_Time - _)
+                    MonthlyMoney += monthly_interest_rate * Monthly_Saving
+                result = round(MonthlyMoney + StarterMoney, 2)
                 return render_template("result.html", result=result,IfGoal=IfGoal, Period_Time=Period_Time)
 
     if "IfGoalCalculator" in session and session["IfGoalCalculator"] == True:
@@ -179,7 +186,7 @@ def result():
             Monthly_Allowance = int(session["Monthly Allowance"] )
             Period_Time = int(session["Period of Time"] )
             Goal_Money = int(session["Goal Money"])
-            NeededCash = Goal_Money - Starter_Deposit
+            NeededCash = Goal_Money
             UsableCash = (Monthly_Allowance*Period_Time + Starter_Deposit) - Goal_Money
             UsablePerMonth = round(UsableCash / Period_Time, 2)
             FastestTime = (Goal_Money - Starter_Deposit) / Period_Time
