@@ -18,7 +18,8 @@ def register():
     if request.method == "POST":
         name = request.form["nm"]
         email = request.form["email"]
-
+        session.permanent = True
+        
         if name == "":
             flash("Please fill in the form.")
         elif email == "":
