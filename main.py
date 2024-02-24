@@ -137,9 +137,9 @@ def dictionary():
 def about():
     return render_template("about.html")
 
-@app.route("/media")
-def media():
-    return render_template("media.html")
+@app.route("/quiz")
+def quiz():
+    return render_template("quiz.html")
 
 @app.route("/result")
 def result():
