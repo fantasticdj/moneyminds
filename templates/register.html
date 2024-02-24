@@ -1,8 +1,26 @@
 <!DOCTYPE html>
 {% extends 'base.html'%}
 
-{% block title %}Registeration{% endblock %}
+{% block title %}
+Registeration
+{% endblock %}
 
-{% block head%}{% endblock%}
+{% block head%}
 
-{% block body%}{% endblock%}
+{% endblock%}
+
+{% block body%}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor%}
+        {% endif%}
+    {% endwith%}
+<form action = "#" method= "POST">
+    <p>Username:</p>
+    <p><input type="text" name = "nm"></p>
+    <p><input type="email" name = "email"></p>
+    <p><input type="submit" value = "submit"></p>
+</form>
+{% endblock%}

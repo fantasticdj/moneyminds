@@ -1,3 +1,4 @@
+from cmath import log
 from crypt import methods
 from flask import Flask, render_template, url_for, session, request, redirect, flash
 from datetime import timedelta
@@ -12,9 +13,24 @@ app.permanent_session_lifetime = timedelta(minutes= 1)
 def home():
     return render_template("index.html")
 
-
-@app.route("/register")
+@app.route("/register", methods=["POST", "GET"])
 def register():
+    if request.method == "POST":
+        name = request.form["nm"]
+        email = request.form["email"]
+
+        if name == "":
+            flash("Please fill in the form.")
+        elif email == "":
+            flash("Please fill in the form.")
+        else:
+            session["nm"] = name
+            session["email"] = email
+            session["loggedin"] = True 
+            return redirect(url_for("home"))
+    elif "nm" in session and "email" in session:
+        flash("Already Logged in!")
+        return redirect(url_for("home"))
     return render_template("register.html")
 
 @app.route("/info")
@@ -169,10 +185,7 @@ def result():
             UsablePerMonth = round(UsableCash / Period_Time, 2)
             FastestTime = (Goal_Money - Starter_Deposit) / Period_Time
             return render_template("result.html", NeededCash= NeededCash, UsableCash=UsableCash, FastestTime= FastestTime, IfGoal= IfGoal, UsablePerMonth=UsablePerMonth)
-    return redirect(url_for("calculator"))
-            
-    
-        
+    return redirect(url_for("calculator"))     
         
         
 
