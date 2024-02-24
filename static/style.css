@@ -7,7 +7,7 @@ body {
     height: 50px;
     border-radius: 3px;
     background-color: white;
-    position: fixed;
+    position: aboslute;
 }
 #home {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -17,6 +17,7 @@ body {
 #homebtn {
     width: 120px;
     height: 51px;
+    margin-top: 7px;
     padding-left: 5px;
     background-color: #e8b7d2;
     border-radius: 4px;
@@ -161,12 +162,12 @@ body {
     cursor: pointer;
     box-shadow: inset 300px 0 0 0 #b3e9d2;
 }
-#main {
+#container1 {
     width: 700px;
-    height: 300px;
+    height: 500px;
     background-color: white;
     border-radius: 25px;
     margin-left: 400px;
-    
-    
+    scroll-padding-top: 100px;
+    margin-top: 100px;
 }
