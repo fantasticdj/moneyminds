@@ -100,10 +100,6 @@ def goalform():
 def form():
     session["IfGoalCalculator"] = False
 
-    if "name" in session:
-        name = session["name"]
-        return render_template("form.html", name=name)
-
     if request.method == "POST":
         Starter_Deposit = request.form["Deposit"]
         Monthly_Saving = request.form["Monthly Saving"]
@@ -130,14 +126,14 @@ def form():
         session.pop("Monthly Saving", None)
         session.pop("Period of Time", None)
 
+    if "name" in session:
+        name = session["name"]
+        return render_template("form.html", name=name)
     return render_template("form.html")
 
 @app.route("/option", methods=["POST", "GET"])
 def option():
 
-    if "name" in session:
-        name = session["name"]
-        return render_template("result.html", name=name)
     
     if request.method == "POST":
         Interest_Rate = request.form["Interest_rate"]
@@ -154,7 +150,11 @@ def option():
             return redirect(url_for("result"))
      
         flash("Please fill in the form correctly.")
+    if "name" in session:
+        name = session["name"]
+        return render_template("option.html", name=name)
     return render_template("option.html")  
+    
 
 @app.route("/dictionary")
 def dictionary():
@@ -217,7 +217,7 @@ def result():
             Period_Time = int(session["Period of Time"] )
             Goal_Money = int(session["Goal Money"])
             UsableCash = Monthly_Allowance*Period_Time - Goal_Money
-            FastestTime = (Goal_Money - Starter_Deposit) / Period_Time
+            FastestTime = round((Goal_Money - Starter_Deposit) / Period_Time,2)
             UsablePerMonth = UsableCash / Period_Time
             if "name" in session:
                 name = session["name"]
@@ -231,7 +231,7 @@ def result():
             NeededCash = Goal_Money
             UsableCash = (Monthly_Allowance*Period_Time + Starter_Deposit) - Goal_Money
             UsablePerMonth = round(UsableCash / Period_Time, 2)
-            FastestTime = (Goal_Money - Starter_Deposit) / Period_Time
+            FastestTime = round(NeededCash / Period_Time,2)
             if "name" in session:
                 name = session["name"]
                 return render_template("result.html", name=name, NeededCash= NeededCash, UsableCash=UsableCash, FastestTime= FastestTime, IfGoal= IfGoal, UsablePerMonth=UsablePerMonth)
