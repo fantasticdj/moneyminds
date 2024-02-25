@@ -5,6 +5,8 @@
 
 {% block head%}{% endblock%}
 
+{% block name %}{{name}}{% endblock %}
+
 {% block body%}
 {% if IfGoal == True: %}
     <p>You earn ${{UsableCash + NeededCash}} in total.</p>

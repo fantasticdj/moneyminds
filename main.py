@@ -1,49 +1,59 @@
 from flask import Flask, render_template, url_for, session, request, redirect, flash
 from datetime import timedelta
 
-
 app = Flask(__name__)
 app.secret_key = "404 error"
-app.permanent_session_lifetime = timedelta(minutes= 1)
-
+app.permanent_session_lifetime = timedelta(minutes=10)
 
 @app.route("/")
 @app.route("/home")
 def home():
+    if "name" in session:
+        name = session["name"]
+        return render_template("index.html", name=name)
     return render_template("index.html")
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
+
     if request.method == "POST":
         name = request.form["nm"]
         email = request.form["email"]
-        session.permanent = True
+        
 
         if name == "":
             flash("Please fill in the form.")
         elif email == "":
             flash("Please fill in the form.")
         else:
-            session["nm"] = name
+            session["name"] = name
             session["email"] = email
-            session["loggedin"] = True 
+            session.permanent = True
+            
             return redirect(url_for("home"))
-    elif "nm" in session and "email" in session:
+    elif "name" in session and "email" in session:
         flash("Already Logged in!")
         return redirect(url_for("home"))
-    return render_template("register.html")
+    
+    if "name" in session:
+        name = session["name"]
+        return render_template("register.html", name=session["name"])
 
-@app.route("/info")
-def infopage():
-    return
+    return render_template("register.html")
 
 @app.route("/calculator")
 def calculator():
+    if "name" in session:
+        name = session["name"]
+        return render_template("calculator.html", name=name)
+
     return render_template("calculator.html")
 
 @app.route("/goalform", methods=["POST", "GET"])
 def goalform():
     session["IfGoalCalculator"] = True
+
+    
     if request.method == "POST":
         Starter_Deposit = request.form["Deposit"]
         Monthly_Allowance = request.form["Monthly Allowance"]
@@ -76,15 +86,24 @@ def goalform():
             
             return redirect(url_for("result"))
 
+    if "name" in session:
+        name = session["name"]
+        return render_template("goalform.html", name=name)
+
     if "Deposit" and "Monthly Saving" and "Period of Time" and "Goal Amount" in session:
         session.pop("Deposit", None)
         session.pop("Monthly Saving", None)
         session.pop("Period of Time", None)
-    return render_template("goalform.html")
+    return render_template("goalform.html")   
 
 @app.route("/form", methods=["POST", "GET"])
 def form():
     session["IfGoalCalculator"] = False
+
+    if "name" in session:
+        name = session["name"]
+        return render_template("form.html", name=name)
+
     if request.method == "POST":
         Starter_Deposit = request.form["Deposit"]
         Monthly_Saving = request.form["Monthly Saving"]
@@ -115,6 +134,11 @@ def form():
 
 @app.route("/option", methods=["POST", "GET"])
 def option():
+
+    if "name" in session:
+        name = session["name"]
+        return render_template("result.html", name=name)
+    
     if request.method == "POST":
         Interest_Rate = request.form["Interest_rate"]
         Yes = request.form["YES"]
@@ -130,23 +154,32 @@ def option():
             return redirect(url_for("result"))
      
         flash("Please fill in the form correctly.")
-    return render_template("option.html")
+    return render_template("option.html")  
 
 @app.route("/dictionary")
 def dictionary():
+    if "name" in session:
+        name = session["name"]
+        return render_template("dictionary.html", name=name)
     return render_template("dictionary.html")
 
 @app.route("/about")
 def about():
+    if "name" in session:
+        name = session["name"]
+        return render_template("about.html", name=name)
     return render_template("about.html")
 
 @app.route("/quiz")
 def quiz():
+    if "name" in session:
+        name = session["name"]
+        return render_template("quiz.html", name=name)
     return render_template("quiz.html")
 
 @app.route("/result")
 def result():
-    
+
     if "IfGoalCalculator" in session and session["IfGoalCalculator"] == False:
         IfGoal = session["IfGoalCalculator"]
         Yes = session["YES"]
@@ -157,6 +190,9 @@ def result():
         if Yes.lower() == "yes":  
             session["YES"] = Yes 
             result = Starter_Deposit + Monthly_Saving*Period_Time
+            if "name" in session:
+                name = session["name"]
+                return render_template("result.html", name=name, result=result,IfGoal=IfGoal, Period_Time=Period_Time)
             return render_template("result.html", result=result,IfGoal=IfGoal, Period_Time=Period_Time)
         else:
             Interest_Rate = int(session["Interest Rate"]) * 0.01
@@ -168,6 +204,9 @@ def result():
                     monthly_interest_rate = pow(1 + Interest_Rate/12, Period_Time - _)
                     MonthlyMoney += monthly_interest_rate * Monthly_Saving
                 result = round(MonthlyMoney + StarterMoney, 2)
+                if "name" in session:
+                    name = session["name"]
+                    return render_template("result.html", name=name, result=result,IfGoal=IfGoal, Period_Time=Period_Time)
                 return render_template("result.html", result=result,IfGoal=IfGoal, Period_Time=Period_Time)
 
     if "IfGoalCalculator" in session and session["IfGoalCalculator"] == True:
@@ -180,6 +219,9 @@ def result():
             UsableCash = Monthly_Allowance*Period_Time - Goal_Money
             FastestTime = (Goal_Money - Starter_Deposit) / Period_Time
             UsablePerMonth = UsableCash / Period_Time
+            if "name" in session:
+                name = session["name"]
+                return render_template("result.html", name=name, NeededCash= NeededCash, UsableCash=UsableCash, FastestTime= FastestTime, IfGoal= IfGoal, UsablePerMonth=UsablePerMonth)
             return render_template("result.html", NeededCash= Goal_Money, UsableCash=UsableCash, FastestTime= FastestTime, IfGoal= IfGoal, UsablePerMonth=UsablePerMonth)
         else:
             Starter_Deposit = int(session["Deposit"])
@@ -190,10 +232,12 @@ def result():
             UsableCash = (Monthly_Allowance*Period_Time + Starter_Deposit) - Goal_Money
             UsablePerMonth = round(UsableCash / Period_Time, 2)
             FastestTime = (Goal_Money - Starter_Deposit) / Period_Time
+            if "name" in session:
+                name = session["name"]
+                return render_template("result.html", name=name, NeededCash= NeededCash, UsableCash=UsableCash, FastestTime= FastestTime, IfGoal= IfGoal, UsablePerMonth=UsablePerMonth)
+    
             return render_template("result.html", NeededCash= NeededCash, UsableCash=UsableCash, FastestTime= FastestTime, IfGoal= IfGoal, UsablePerMonth=UsablePerMonth)
-    return redirect(url_for("calculator"))     
-        
-        
+    return redirect(url_for("calculator"))       
 
 if __name__ == "__main__":
     app.run(debug=True)
