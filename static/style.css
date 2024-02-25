@@ -1,4 +1,4 @@
-/*index.html design codes*/
+/*base.html design codes*/
 html {
     scroll-behavior: smooth;
 }
@@ -6,7 +6,7 @@ body {
     background-color: #d9dbff;
 }
 #navbar {
-    width: 1425px;
+    width: 1440px;
     height: 45px;
     border-radius: 3px;
     background-color: whitesmoke;
@@ -152,18 +152,17 @@ body {
     cursor: pointer;
     color: black;
 }
-#searchbar {
+#string {
+    width: 140px;
+    height: 40px;
+    background-color: #e8b7d2;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-#searchbtn {
-    color: black;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border-color: #e8b7d2;
-    transition: ease-out 0.4s;
-}
-#searchbtn:hover {
-    cursor: pointer;
-    box-shadow: inset 300px 0 0 0 #b3e9d2;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    padding-top: 3px;
+    padding-left: 40px;
+    margin-right: 10px;
 }
 /*register.html design codes*/
 #container1 {
