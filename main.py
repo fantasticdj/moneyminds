@@ -3,7 +3,7 @@ from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = "404 error"
-app.permanent_session_lifetime = timedelta(minutes=10)
+app.permanent_session_lifetime = timedelta(minutes=1)
 
 @app.route("/")
 @app.route("/home")
