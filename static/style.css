@@ -348,7 +348,7 @@ h4 {
 /*register.html design codes*/
 #registerdiv {
     width: 300px;
-    height: 290px;
+    height: 340px;
     background-color: #b3e9d2;
     border-radius: 15px;
     margin-top: 200px;
@@ -369,4 +369,50 @@ h4 {
 #registersubmitbtn:hover {
     cursor: pointer;
     box-shadow: inset 300px 0 0 0 #ddc6e0;
+}
+/*about.html design codes*/
+#abtcontainer {
+    width: 800px;
+    height: 400px;
+    background-color: #cddbf4;
+    margin-top: 120px;
+    border-radius: 15px;
+    border-width: 7px;
+    border-style: double;
+    border-color: #e8e4f5;
+    margin-left: 350px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-right: 10px;
+}
+#sct1 {
+    height: 800px;
+    background-color: #d5d1eb;
+    padding-top: 50px;
+}
+#abtuscontainer {
+    width: 600px;
+    height: 280px;
+    background-color: #e8b7d2;
+    border-radius: 10px;
+    border-style: double;
+    border-width: 5px;
+    border-color: #e8e4f5;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 400px;
+    margin-left: 400px;
+}
+#sct2 {
+    height: 600px;
+}
+/*quiz.html design codes*/
+#quizcontainer {
+    width: 500px;
+    height: 300px;
+    background-color: #b3e9d2;
+    border-radius: 10px;
+    border-style: double;
+    border-width: 6px;
+    border-color: #e8b7d2;
+    margin-top: 200px;
+    margin-left: 450px;
 }
