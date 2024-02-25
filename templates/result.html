@@ -8,6 +8,8 @@
 {% block name %}{{name}}{% endblock %}
 
 {% block body%}
+<div id="resultcontainer">
+    <h4>Results: </h4>
 {% if IfGoal == True: %}
     <p>You earn ${{UsableCash + NeededCash}} in total.</p>
     <p>Every month you need to save at least {{FastestTime}}</p>
@@ -15,6 +17,7 @@
 {% elif IfGoal == False: %}
     <p>You earn ${{result}} in {{Period_Time}} months</p>
 {% endif%}
+</div>
 
 
 {% endblock%}
